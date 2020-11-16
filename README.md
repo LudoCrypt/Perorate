@@ -98,12 +98,10 @@ PerorateEnd.addBarrensBiome(BiomeKeys.END_BARRENS, new Biome.MixedNoisePoint(0.0
 
 See how here, no biome noise's collide.
 
--
-
 Lets see another example, lets take this,
 
 ```java
-// See how humidity is set to true!
+// See how humidity and altitude are set to true, and there is a 0.1 in the altitude!
 PerorateEnd.addBarrensBiomeWithWeight(BiomeKeys.END_BARRENS, new Biome.MixedNoisePoint(0.0F, 0.0F, 0.1F, 0.0F, 0.0F), 4, false, true, true, false);
 ```
 
