@@ -40,7 +40,7 @@ public class EndMultiNoiseBiomeSource extends BiomeSource {
 	private final MultiNoiseBiomeSource barrensBiome;
 
 	public EndMultiNoiseBiomeSource(long seed, MultiNoiseBiomeSource centerBiome, MultiNoiseBiomeSource highlandsBiome, MultiNoiseBiomeSource midlandsBiome, MultiNoiseBiomeSource smallIslandsBiome, MultiNoiseBiomeSource barrensBiome) {
-		super(new BiomeList<Biome>().addFromMultiNoiseESource(centerBiome).addFromMultiNoiseESource(highlandsBiome).addFromMultiNoiseESource(midlandsBiome).addFromMultiNoiseESource(smallIslandsBiome).addFromMultiNoiseESource(barrensBiome));
+		super(new BiomeList<Biome>().addFromMultiNoiseBiomeSource(centerBiome).addFromMultiNoiseBiomeSource(highlandsBiome).addFromMultiNoiseBiomeSource(midlandsBiome).addFromMultiNoiseBiomeSource(smallIslandsBiome).addFromMultiNoiseBiomeSource(barrensBiome));
 		this.seed = seed;
 		this.centerBiome = centerBiome;
 		this.highlandsBiome = highlandsBiome;
