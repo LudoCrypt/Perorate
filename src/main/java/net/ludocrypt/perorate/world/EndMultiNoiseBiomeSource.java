@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.ludocrypt.perorate.util.ListReturnableList;
+import net.ludocrypt.perorate.util.BiomeList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.SimplexNoiseSampler;
 import net.minecraft.world.biome.Biome;
@@ -40,7 +40,7 @@ public class EndMultiNoiseBiomeSource extends BiomeSource {
 	private final MultiNoiseBiomeSource barrensBiome;
 
 	public EndMultiNoiseBiomeSource(long seed, MultiNoiseBiomeSource centerBiome, MultiNoiseBiomeSource highlandsBiome, MultiNoiseBiomeSource midlandsBiome, MultiNoiseBiomeSource smallIslandsBiome, MultiNoiseBiomeSource barrensBiome) {
-		super(new ListReturnableList<Biome>().addFromMultiNoiseESource(centerBiome).addFromMultiNoiseESource(highlandsBiome).addFromMultiNoiseESource(midlandsBiome).addFromMultiNoiseESource(smallIslandsBiome).addFromMultiNoiseESource(barrensBiome));
+		super(new BiomeList<Biome>().addFromMultiNoiseESource(centerBiome).addFromMultiNoiseESource(highlandsBiome).addFromMultiNoiseESource(midlandsBiome).addFromMultiNoiseESource(smallIslandsBiome).addFromMultiNoiseESource(barrensBiome));
 		this.seed = seed;
 		this.centerBiome = centerBiome;
 		this.highlandsBiome = highlandsBiome;
