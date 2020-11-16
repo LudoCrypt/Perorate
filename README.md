@@ -1,5 +1,5 @@
 # Perorate
- Easily add end biomes with a MultiNoise BiomeSource!
+ Easily add end biomes with a MixedNoisePoint!
 
 ## As a library
 build.gradle
