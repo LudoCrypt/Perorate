@@ -26,7 +26,7 @@ public class BiomeList<E> extends ArrayList<E> {
 		return list;
 	}
 
-	public BiomeList<Biome> addFromMultiNoiseESource(MultiNoiseBiomeSource source) {
+	public BiomeList<Biome> addFromMultiNoiseBiomeSource(MultiNoiseBiomeSource source) {
 		return addStream(((MultiNoiseBiomeSourceAccessor) source).getBiomePoints().iterator());
 	}
 
