@@ -57,6 +57,7 @@ Or you can add weight to biomes!
 
 	// Add a biome to the small end islands portion of the end with weight
 	PerorateEnd.addSmallIslandsBiomeWithWeight(BiomeKeys.SMALL_END_ISLANDS, new Biome.MixedNoisePoint(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), 25, false, false, false, false);
+	
 	// Add a biome to the barrens portion of the end with weight
 	PerorateEnd.addBarrensBiomeWithWeight(BiomeKeys.END_BARRENS, new Biome.MixedNoisePoint(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), 4, false, false, false, false);
 ```
