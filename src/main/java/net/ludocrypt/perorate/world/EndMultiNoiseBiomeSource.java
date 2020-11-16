@@ -71,15 +71,15 @@ public class EndMultiNoiseBiomeSource extends BiomeSource {
 		int i = biomeX >> 2;
 		int j = biomeZ >> 2;
 		if ((long) i * (long) i + (long) j * (long) j <= 4096L) {
-			return this.centerBiome.getBiomeForNoiseGen(biomeX, 0, biomeZ);
+			return this.centerBiome.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
 		} else {
-			float f = tlCache.get().getNoiseAt(biomeX, biomeZ);
+			float f = tlCache.get().getNoiseAt(i * 2 + 1, j * 2 + 1);
 			if (f > 40.0F) {
-				return this.highlandsBiome.getBiomeForNoiseGen(biomeX, 0, biomeZ);
+				return this.highlandsBiome.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
 			} else if (f >= 0.0F) {
-				return this.midlandsBiome.getBiomeForNoiseGen(biomeX, 0, biomeZ);
+				return this.midlandsBiome.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
 			} else {
-				return f < -20.0F ? this.smallIslandsBiome.getBiomeForNoiseGen(biomeX, 0, biomeZ) : this.barrensBiome.getBiomeForNoiseGen(biomeX, 0, biomeZ);
+				return f < -20.0F ? this.smallIslandsBiome.getBiomeForNoiseGen(biomeX, biomeY, biomeZ) : this.barrensBiome.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
 			}
 		}
 	}
