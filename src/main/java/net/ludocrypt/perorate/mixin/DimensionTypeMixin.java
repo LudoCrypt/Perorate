@@ -13,11 +13,12 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 
 @Mixin(value = DimensionType.class, priority = 69)
-public class DimensionTypeMixin {
+public abstract class DimensionTypeMixin {
 
 	@Inject(method = "createEndGenerator", at = @At("HEAD"), cancellable = true)
 	private static void PERORATE_replaceEndGenerator(Registry<Biome> biomeRegistry, Registry<ChunkGeneratorSettings> chunkGeneratorSettingsRegistry, long seed, CallbackInfoReturnable<ChunkGenerator> ci) {
 		ci.setReturnValue(PerorateEnd.createEndGenerator(biomeRegistry, chunkGeneratorSettingsRegistry, seed));
 		ci.cancel();
 	}
+
 }
