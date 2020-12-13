@@ -84,12 +84,8 @@ public class EndMultiNoiseBiomeSource extends BiomeSource {
 		}
 	}
 
-	public boolean seedMatches(long seed) {
-		return this.seed == seed;
-	}
-
 	public boolean matches(long seed, MultiNoiseBiomeSource centerBiome, MultiNoiseBiomeSource highlandsBiome, MultiNoiseBiomeSource midlandsBiome, MultiNoiseBiomeSource smallIslandsBiome, MultiNoiseBiomeSource barrensBiome) {
-		return this.seed == seed && this.centerBiome == centerBiome && this.highlandsBiome == highlandsBiome && this.midlandsBiome == midlandsBiome && this.smallIslandsBiome == smallIslandsBiome && this.barrensBiome == barrensBiome;
+		return this.seed == seed && this.centerBiome.matchesInstance(seed) && this.highlandsBiome.matchesInstance(seed) && this.midlandsBiome.matchesInstance(seed) && this.smallIslandsBiome.matchesInstance(seed) && this.barrensBiome.matchesInstance(seed);
 	}
 
 	// Stolen Shamelessly from lithium.

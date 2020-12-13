@@ -1,0 +1,7 @@
+accessWidener	v1	named
+accessible field net/minecraft/world/biome/source/MultiNoiseBiomeSource$Preset id Lnet/minecraft/util/Identifier;
+accessible field net/minecraft/world/biome/Biome$MixedNoisePoint temperature F
+accessible field net/minecraft/world/biome/Biome$MixedNoisePoint humidity F
+accessible field net/minecraft/world/biome/Biome$MixedNoisePoint altitude F
+accessible field net/minecraft/world/biome/Biome$MixedNoisePoint weirdness F
+accessible field net/minecraft/world/biome/Biome$MixedNoisePoint weight F

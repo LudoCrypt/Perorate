@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import com.google.common.base.Preconditions;
 import com.mojang.datafixers.util.Pair;
 
-import net.ludocrypt.perorate.mixin.MixedNoisePointAccessor;
 import net.ludocrypt.perorate.mixin.MultiNoiseBiomeSourceAccessor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -29,22 +29,32 @@ public class PerorateEnd {
 	public static final Map<RegistryKey<Biome>, Biome.MixedNoisePoint> BARRENS_NOISE_POINTS = new HashMap<>();
 
 	public static void addCenterBiome(RegistryKey<Biome> biome, Biome.MixedNoisePoint noise) {
+		Preconditions.checkNotNull(biome, "biome is null");
+		Preconditions.checkNotNull(noise, "noise is null");
 		CENTER_NOISE_POINTS.put(biome, noise);
 	}
 
 	public static void addHighlandsBiome(RegistryKey<Biome> biome, Biome.MixedNoisePoint noise) {
+		Preconditions.checkNotNull(biome, "biome is null");
+		Preconditions.checkNotNull(noise, "noise is null");
 		HIGHLANDS_NOISE_POINTS.put(biome, noise);
 	}
 
 	public static void addMidlandsBiome(RegistryKey<Biome> biome, Biome.MixedNoisePoint noise) {
+		Preconditions.checkNotNull(biome, "biome is null");
+		Preconditions.checkNotNull(noise, "noise is null");
 		MIDLANDS_NOISE_POINTS.put(biome, noise);
 	}
 
 	public static void addSmallIslandsBiome(RegistryKey<Biome> biome, Biome.MixedNoisePoint noise) {
+		Preconditions.checkNotNull(biome, "biome is null");
+		Preconditions.checkNotNull(noise, "noise is null");
 		SMALL_ISLANDS_NOISE_POINTS.put(biome, noise);
 	}
 
 	public static void addBarrensBiome(RegistryKey<Biome> biome, Biome.MixedNoisePoint noise) {
+		Preconditions.checkNotNull(biome, "biome is null");
+		Preconditions.checkNotNull(noise, "noise is null");
 		BARRENS_NOISE_POINTS.put(biome, noise);
 	}
 
@@ -109,7 +119,7 @@ public class PerorateEnd {
 				});
 	}
 
-	// Adds biomes to all non-center areas
+	@Deprecated
 	public static void addEndBiomeWithWeight(RegistryKey<Biome> biomeKey, Biome.MixedNoisePoint noisePoint, int weight, boolean temperature, boolean humidity, boolean altitude, boolean weirdness) {
 		addHighlandsBiomeWithWeight(biomeKey, noisePoint, weight, temperature, humidity, altitude, weirdness);
 		addMidlandsBiomeWithWeight(biomeKey, noisePoint, weight, temperature, humidity, altitude, weirdness);
@@ -117,51 +127,45 @@ public class PerorateEnd {
 		addBarrensBiomeWithWeight(biomeKey, noisePoint, weight, temperature, humidity, altitude, weirdness);
 	}
 
-	// Adds biomes to all biomes that (would've) had land
+	@Deprecated
 	public static void addLandBiomeWithWeight(RegistryKey<Biome> biomeKey, Biome.MixedNoisePoint noisePoint, int weight, boolean temperature, boolean humidity, boolean altitude, boolean weirdness) {
 		addHighlandsBiomeWithWeight(biomeKey, noisePoint, weight, temperature, humidity, altitude, weirdness);
 		addMidlandsBiomeWithWeight(biomeKey, noisePoint, weight, temperature, humidity, altitude, weirdness);
 		addBarrensBiomeWithWeight(biomeKey, noisePoint, weight, temperature, humidity, altitude, weirdness);
 	}
 
-	// Adds biomes to the Center
+	@Deprecated
 	public static void addCenterBiomeWithWeight(RegistryKey<Biome> biomeKey, Biome.MixedNoisePoint noisePoint, int weight, boolean temperature, boolean humidity, boolean altitude, boolean weirdness) {
-		MixedNoisePointAccessor noise = ((MixedNoisePointAccessor) noisePoint);
 		for (int i = 0; i < weight; i++) {
-			addCenterBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noise.temperature() : (1 / weight) * i + noise.temperature(), !humidity ? noise.humidity() : (1 / weight) * i + noise.humidity(), !altitude ? noise.altitude() : (1 / weight) * i + noise.altitude(), !weirdness ? noise.weirdness() : (1 / weight) * i + noise.weirdness(), noise.weight()));
+			addCenterBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noisePoint.temperature : (1 / weight) * i + noisePoint.temperature, !humidity ? noisePoint.humidity : (1 / weight) * i + noisePoint.humidity, !altitude ? noisePoint.altitude : (1 / weight) * i + noisePoint.altitude, !weirdness ? noisePoint.weirdness : (1 / weight) * i + noisePoint.weirdness, noisePoint.weight));
 		}
 	}
 
-	// Adds biomes to the Highlands
+	@Deprecated
 	public static void addHighlandsBiomeWithWeight(RegistryKey<Biome> biomeKey, Biome.MixedNoisePoint noisePoint, int weight, boolean temperature, boolean humidity, boolean altitude, boolean weirdness) {
-		MixedNoisePointAccessor noise = ((MixedNoisePointAccessor) noisePoint);
 		for (int i = 0; i < weight; i++) {
-			addHighlandsBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noise.temperature() : (1 / weight) * i + noise.temperature(), !humidity ? noise.humidity() : (1 / weight) * i + noise.humidity(), !altitude ? noise.altitude() : (1 / weight) * i + noise.altitude(), !weirdness ? noise.weirdness() : (1 / weight) * i + noise.weirdness(), noise.weight()));
+			addHighlandsBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noisePoint.temperature : (1 / weight) * i + noisePoint.temperature, !humidity ? noisePoint.humidity : (1 / weight) * i + noisePoint.humidity, !altitude ? noisePoint.altitude : (1 / weight) * i + noisePoint.altitude, !weirdness ? noisePoint.weirdness : (1 / weight) * i + noisePoint.weirdness, noisePoint.weight));
 		}
 	}
 
-	// Adds biomes to the Midlands
+	@Deprecated
 	public static void addMidlandsBiomeWithWeight(RegistryKey<Biome> biomeKey, Biome.MixedNoisePoint noisePoint, int weight, boolean temperature, boolean humidity, boolean altitude, boolean weirdness) {
-		MixedNoisePointAccessor noise = ((MixedNoisePointAccessor) noisePoint);
 		for (int i = 0; i < weight; i++) {
-			addMidlandsBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noise.temperature() : (1 / weight) * i + noise.temperature(), !humidity ? noise.humidity() : (1 / weight) * i + noise.humidity(), !altitude ? noise.altitude() : (1 / weight) * i + noise.altitude(), !weirdness ? noise.weirdness() : (1 / weight) * i + noise.weirdness(), noise.weight()));
+			addMidlandsBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noisePoint.temperature : (1 / weight) * i + noisePoint.temperature, !humidity ? noisePoint.humidity : (1 / weight) * i + noisePoint.humidity, !altitude ? noisePoint.altitude : (1 / weight) * i + noisePoint.altitude, !weirdness ? noisePoint.weirdness : (1 / weight) * i + noisePoint.weirdness, noisePoint.weight));
 		}
 	}
 
-	// Adds biomes to the Small Islands
+	@Deprecated
 	public static void addSmallIslandsBiomeWithWeight(RegistryKey<Biome> biomeKey, Biome.MixedNoisePoint noisePoint, int weight, boolean temperature, boolean humidity, boolean altitude, boolean weirdness) {
-		MixedNoisePointAccessor noise = ((MixedNoisePointAccessor) noisePoint);
 		for (int i = 0; i < weight; i++) {
-			addSmallIslandsBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noise.temperature() : (1 / weight) * i + noise.temperature(), !humidity ? noise.humidity() : (1 / weight) * i + noise.humidity(), !altitude ? noise.altitude() : (1 / weight) * i + noise.altitude(), !weirdness ? noise.weirdness() : (1 / weight) * i + noise.weirdness(), noise.weight()));
+			addSmallIslandsBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noisePoint.temperature : (1 / weight) * i + noisePoint.temperature, !humidity ? noisePoint.humidity : (1 / weight) * i + noisePoint.humidity, !altitude ? noisePoint.altitude : (1 / weight) * i + noisePoint.altitude, !weirdness ? noisePoint.weirdness : (1 / weight) * i + noisePoint.weirdness, noisePoint.weight));
 		}
 	}
 
-	// Adds biomes to the Barrens
+	@Deprecated
 	public static void addBarrensBiomeWithWeight(RegistryKey<Biome> biomeKey, Biome.MixedNoisePoint noisePoint, int weight, boolean temperature, boolean humidity, boolean altitude, boolean weirdness) {
-		MixedNoisePointAccessor noise = ((MixedNoisePointAccessor) noisePoint);
 		for (int i = 0; i < weight; i++) {
-			addBarrensBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noise.temperature() : (1 / weight) * i + noise.temperature(), !humidity ? noise.humidity() : (1 / weight) * i + noise.humidity(), !altitude ? noise.altitude() : (1 / weight) * i + noise.altitude(), !weirdness ? noise.weirdness() : (1 / weight) * i + noise.weirdness(), noise.weight()));
+			addBarrensBiome(biomeKey, new Biome.MixedNoisePoint(!temperature ? noisePoint.temperature : (1 / weight) * i + noisePoint.temperature, !humidity ? noisePoint.humidity : (1 / weight) * i + noisePoint.humidity, !altitude ? noisePoint.altitude : (1 / weight) * i + noisePoint.altitude, !weirdness ? noisePoint.weirdness : (1 / weight) * i + noisePoint.weirdness, noisePoint.weight));
 		}
 	}
-
 }
