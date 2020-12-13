@@ -22,7 +22,7 @@ gradle.properties
 ```groovy
 perorate_version=a.b.c
 ```
-replace a.b.c with the latest version. For example, 1.0.3, or 1.0.0.
+replace a.b.c with the latest version. For example, 1.1.0, or 1.0.3, or 1.0.0, etc.
 
 ## Use in code
 
